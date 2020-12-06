@@ -19,11 +19,7 @@ def seat(line):
 
 
 def find_highest(lines):
-    highest = 0
-    for line in lines:
-        seat_num = seat(line)
-        if seat_num > highest:
-            highest = seat_num
+    highest = max(seat(l) for l in lines)
     print(highest)
     return highest
 
