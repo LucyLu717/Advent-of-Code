@@ -1,5 +1,3 @@
-import string
-
 BASE = "no other"
 MY_BAG = "shiny gold"
 

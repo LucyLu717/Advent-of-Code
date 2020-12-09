@@ -1,6 +1,3 @@
-import string
-
-
 def read_input():
     with open("../inputs/day8.txt") as f:
         lines = [parse_line(line.strip()) for line in f]
