@@ -27,14 +27,8 @@ def find_ways(numbers):
     numbers.append(0)
     ways = [0] * (max(numbers) + 1)
     ways[0] = 1
-    if 1 in numbers:
-        ways[1] = 1
-    if 2 in numbers:
-        ways[2] = ways[1] + 1
     numbers = sorted(numbers)
     for i in numbers:
-        if i == 1 or i == 2:
-            continue
         for j in [1, 2, 3]:
             if i - j in numbers:
                 ways[i] += ways[i - j]
