@@ -20,7 +20,6 @@ def find_joltage(numbers):
         difference[n] += 1
         joltage += n
     print(difference[1] * (difference[3] + 1))
-    return difference
 
 
 def find_ways(numbers):
