@@ -1,5 +1,6 @@
 # User added stuff
 inputs/
+**.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,1 +1,0 @@
-I guess I could keep a reversed tree and do a bfs to get reachable nodes.
