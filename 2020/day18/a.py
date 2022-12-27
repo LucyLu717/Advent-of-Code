@@ -4,10 +4,7 @@ def read_input():
     return info
 
 
-import math
-from collections import defaultdict, deque
-from copy import deepcopy
-import itertools
+from collections import deque
 
 ops = ["(", ")", "+", "*"]
 
