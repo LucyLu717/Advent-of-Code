@@ -1,11 +1,9 @@
 #include <algorithm>
-#include <fstream>
-#include <iostream>
 #include <map>
 #include <numeric>
 #include <set>
-#include <string>
-#include <vector>
+
+#include "utils/input.hpp"
 
 using namespace std;
 
@@ -51,19 +49,9 @@ int get_new_total(vector<string>& game, vector<int>& result) {
 }
 
 int main() {
-    ifstream input(INPUT);
-    if (!input.is_open()) {
-        throw runtime_error("input invalid");
-    }
-
-    // process input
-    string round;
-    vector<string> game;
+    vector<string> game = getInput(INPUT);
     vector<int> result;
-    while (getline(input, round)) {
-        game.push_back(round);
-        result.push_back(0);
-    }
+    for( const auto& elt: game) { result.push_back(0); }
 
     // part 1
     auto total = get_total(game, result);
