@@ -4,8 +4,9 @@
 #include <string>
 
 using namespace std;
+using lines_t = vector<string>;
 
-vector<string> getInput( const string& filen ) {
+lines_t getInput( const string& filen ) {
     ifstream input(filen);
     if (!input.is_open()) {
         throw runtime_error("input invalid");
@@ -13,7 +14,7 @@ vector<string> getInput( const string& filen ) {
 
     // process input
     string line;
-    vector<string> result;
+    lines_t result;
     while (getline(input, line)) {
         result.push_back(line);
     }

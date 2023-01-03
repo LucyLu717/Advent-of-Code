@@ -25,9 +25,9 @@ pair_t parse_range(const string& range) {
 }
 
 template<typename Func>
-int solution(const vector<string>& pairs, Func&& func) {
+int solution(const lines_t& pairs, Func&& func) {
     int count = 0;
-    for( const auto& pair: pairs) {
+    for(const auto& pair: pairs) {
         auto ranges = split(pair, ',');
         bool yes = func(parse_range(ranges.first), parse_range(ranges.second));
         count += yes ? 1 : 0;
@@ -35,16 +35,16 @@ int solution(const vector<string>& pairs, Func&& func) {
     return count;
 }
 
-int part1(const vector<string>& pairs) {
+int part1(const lines_t& pairs) {
     return solution(pairs, fully_cover);
 }
 
-int part2(const vector<string>& pairs) {
+int part2(const lines_t& pairs) {
     return solution(pairs, overlap);
 }
 
 int main() {
-    vector<string> pairs = getInput(INPUT);
+    lines_t pairs = getInput(INPUT);
 
     // part 1
     int score1 = part1(pairs);

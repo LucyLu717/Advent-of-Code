@@ -20,7 +20,7 @@ int letter_score(char letter) {
     return score;
 }
 
-int part1(const vector<string>& rucksacks) {
+int part1(const lines_t& rucksacks) {
     int score = 0;
     for( const auto& sack: rucksacks) {
         auto firstSet = convertStrToSet(sack.substr(0, sack.size() / 2));
@@ -34,7 +34,7 @@ int part1(const vector<string>& rucksacks) {
     return score;
 }
 
-int part2(const vector<string>& rucksacks) {
+int part2(const lines_t& rucksacks) {
     int score = 0;
     assert(rucksacks.size() % 3 == 0);
     auto it = rucksacks.begin();
@@ -55,7 +55,7 @@ int part2(const vector<string>& rucksacks) {
 }
 
 int main() {
-    vector<string> rucksacks = getInput(INPUT);
+    lines_t rucksacks = getInput(INPUT);
 
     // part 1
     int score1 = part1(rucksacks);

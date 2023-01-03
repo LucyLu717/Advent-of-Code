@@ -33,7 +33,7 @@ int get_round_score(string round) {
     return score;
 }
 
-int get_total(const vector<string>& game, vector<int>& result) {
+int get_total(const lines_t& game, vector<int>& result) {
     transform(game.cbegin(), game.cend(), result.begin(), get_round_score);
     return accumulate(result.begin(), result.end(), 0);
 }
@@ -42,14 +42,14 @@ string get_new_round(string instruction) {
     return INSTR_TO_ROUND.at(instruction);
 }
 
-int get_new_total(vector<string>& game, vector<int>& result) {
+int get_new_total(lines_t& game, vector<int>& result) {
     transform(game.cbegin(), game.cend(), game.begin(), get_new_round);
     transform(game.cbegin(), game.cend(), result.begin(), get_round_score);
     return accumulate(result.begin(), result.end(), 0);
 }
 
 int main() {
-    vector<string> game = getInput(INPUT);
+    lines_t game = getInput(INPUT);
     vector<int> result;
     for( const auto& elt: game) { result.push_back(0); }
 
