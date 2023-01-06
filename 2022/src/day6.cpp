@@ -32,7 +32,6 @@ int main() {
   lines_t input = getInput(INPUT);
   vector<char> chars;
   copy(input[0].begin(), input[0].end(), back_inserter(chars));
-  ;
 
   // part 1
   int charPos1 = findPos(chars, RANGE_SIZE);

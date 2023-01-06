@@ -23,9 +23,9 @@ int letter_score(char letter) {
 int part1(const lines_t &rucksacks) {
   int score = 0;
   for (const auto &sack : rucksacks) {
-    auto firstSet = convertStrToSet(sack.substr(0, sack.size() / 2));
+    auto firstSet = str::convertStrToSet(sack.substr(0, sack.size() / 2));
     auto secondSet =
-        convertStrToSet(sack.substr(sack.size() / 2, sack.size() / 2));
+        str::convertStrToSet(sack.substr(sack.size() / 2, sack.size() / 2));
     vector<char> overlap;
     set_intersection(firstSet.begin(), firstSet.end(), secondSet.begin(),
                      secondSet.end(), back_inserter(overlap));
@@ -40,9 +40,9 @@ int part2(const lines_t &rucksacks) {
   assert(rucksacks.size() % 3 == 0);
   auto it = rucksacks.begin();
   while (it < rucksacks.end()) {
-    auto firstElf = convertStrToSet(*it++);
-    auto secondElf = convertStrToSet(*it++);
-    auto thirdElf = convertStrToSet(*it++);
+    auto firstElf = str::convertStrToSet(*it++);
+    auto secondElf = str::convertStrToSet(*it++);
+    auto thirdElf = str::convertStrToSet(*it++);
     vector<char> overlap1;
     set_intersection(firstElf.begin(), firstElf.end(), secondElf.begin(),
                      secondElf.end(), back_inserter(overlap1));

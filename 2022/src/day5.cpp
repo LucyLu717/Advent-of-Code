@@ -31,9 +31,9 @@ queue_t parse_queue(const lines_t &lines, size_t pos) {
 }
 
 pair_t parse_move_step(const string &step, int &num) {
-  auto instructions = split(step, " from ");
-  num = stoi(split(instructions.first, " ").second);
-  auto indices = split(instructions.second, " to ");
+  auto instructions = str::split(step, " from ");
+  num = stoi(str::split(instructions.first, " ").second);
+  auto indices = str::split(instructions.second, " to ");
   return make_pair(stoi(indices.first), stoi(indices.second));
 }
 

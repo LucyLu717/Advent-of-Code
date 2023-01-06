@@ -1,6 +1,3 @@
-#include <algorithm>
-#include <set>
-
 #include "utils/algo.hpp"
 #include "utils/input.hpp"
 #include "utils/tree.hpp"
@@ -29,7 +26,7 @@ pair<int, int> process(lines_t lines) {
       string cmd = cmdline.substr(0, 2);
       if (cmd == CMD_CD) {
         // cd
-        auto dir = split(cmdline, SEP).second;
+        auto dir = str::split(cmdline, SEP).second;
         if (dir == DIR_LAST) {
           currNode = currNode->parent;
         } else {
@@ -44,11 +41,11 @@ pair<int, int> process(lines_t lines) {
       if (line.size() > DIR_PREFIX.size() &&
           line.substr(0, DIR_PREFIX.size()) == DIR_PREFIX) {
         // sub dir
-        auto dirName = split(line, SEP).second;
+        auto dirName = str::split(line, SEP).second;
         tree.addChild(0, dirName, currNode);
       } else {
         // file
-        auto [size, filename] = split(line, SEP);
+        auto [size, filename] = str::split(line, SEP);
         // add only file sizes for now, traverse dirs later
         currNode->val += stol(size);
       }

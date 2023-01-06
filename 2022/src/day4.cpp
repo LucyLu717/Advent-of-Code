@@ -19,14 +19,14 @@ bool overlap(pair_t p1, pair_t p2) {
 }
 
 pair_t parse_range(const string &range) {
-  auto numbers = split(range, '-');
+  auto numbers = str::split(range, '-');
   return make_pair(stoi(numbers.first), stoi(numbers.second));
 }
 
 template <typename Func> int solution(const lines_t &pairs, Func &&func) {
   int count = 0;
   for (const auto &pair : pairs) {
-    auto ranges = split(pair, ',');
+    auto ranges = str::split(pair, ',');
     bool yes = func(parse_range(ranges.first), parse_range(ranges.second));
     count += yes ? 1 : 0;
   }
