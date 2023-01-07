@@ -106,3 +106,29 @@ template <typename ElmT> void printMatrix(const vector<vector<ElmT>> &matrix) {
   cout << '\n';
 }
 } // namespace matrix
+
+namespace direction {
+using coord_t = pair<int, int>;
+
+enum class Direction : char {
+  eUp = 'U',
+  eDown = 'D',
+  eLeft = 'L',
+  eRight = 'R'
+};
+
+// Move point in Direction [d] by [step]
+// [point] represents a pair of coordinates, i.e. (x, y)
+template <Direction d> void move_point(coord_t &point, int step) {
+  if constexpr (d == Direction::eUp) {
+    point.second += step;
+  } else if constexpr (d == Direction::eDown) {
+    point.second -= step;
+  } else if constexpr (d == Direction::eLeft) {
+    point.first -= step;
+  } else if constexpr (d == Direction::eRight) {
+    point.first += step;
+  }
+}
+
+} // namespace direction
