@@ -14,8 +14,8 @@ struct Knot {
 
 // debug
 void print(const point_t &head, const point_t &tail) {
-  cout << "head " << head.first << " " << head.second << '\n';
-  cout << "tail " << tail.first << " " << tail.second << '\n';
+  UserPrint::print(' ', "head", head.first, head.second);
+  UserPrint::print(' ', "tail", tail.first, tail.second);
 }
 
 void move_tail(const point_t &head, point_t &tail) {
@@ -51,7 +51,7 @@ int solution(const lines_t &lines, int numKnots) {
   auto head = create_knot_chain(numKnots);
   set<point_t> tailPos;
   for (const auto &line : lines) {
-    auto [dir, step] = str::split(line, " ");
+    auto [dir, step] = str::split(line, ' ');
     auto d = static_cast<direction::Direction>(dir[0]);
     auto s = stol(step);
     while (s-- > 0) {

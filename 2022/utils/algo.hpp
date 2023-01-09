@@ -1,9 +1,32 @@
+#include <functional>
 #include <iostream>
+#include <numeric>
 #include <set>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
+
+namespace vec {
+template <typename T, typename Compare>
+void sortVec(vector<T> &v, const Compare &comp) {
+  sort(v.begin(), v.end(), comp);
+}
+
+template <typename T> void print(const vector<T> &v, char sep = ' ') {
+  for (auto elm : v) {
+    cout << elm << sep;
+  }
+  cout << endl;
+}
+
+template <typename T, typename ResT, typename AccT>
+ResT accu(const vector<T> &v, ResT init, AccT op) {
+  return accumulate(v.begin(), v.end(), init, op);
+}
+
+} // namespace vec
 
 namespace str {
 // convert a string into a set of chars
@@ -32,6 +55,20 @@ inline pair<string, string> split(const string &str, const string &sep) {
   }
   return make_pair(str.substr(0, pos), str.substr(pos + sep.size()));
 }
+
+inline vector<string> splitAll(const string &str, const string &sep) {
+  vector<string> res;
+  size_t startPos = 0;
+  auto pos = str.find(sep, startPos);
+  while (pos != string::npos) {
+    res.push_back(str.substr(startPos, pos - startPos));
+    startPos = pos + sep.size();
+    pos = str.find(sep, startPos);
+  }
+  res.push_back(str.substr(startPos));
+  return res;
+}
+
 } // namespace str
 
 namespace matrix {
@@ -100,7 +137,7 @@ void iterateMatrix(const vector<vector<ElmT>> &matrix, Func1 &&perElmFunc,
 }
 
 template <typename ElmT> void printMatrix(const vector<vector<ElmT>> &matrix) {
-  auto print = [](ElmT val) { cout << val << " "; };
+  auto print = [](ElmT val) { cout << val << ' '; };
   auto printNewLine = [](vector<ElmT> _) { cout << '\n'; };
   iterateMatrix(matrix, print, printNewLine);
   cout << '\n';
@@ -132,3 +169,15 @@ template <Direction d> void move_point(coord_t &point, int step) {
 }
 
 } // namespace direction
+
+namespace UserPrint {
+template <typename... ArgTypes> void print(char sep, ArgTypes... args);
+
+template <typename T> inline void print(char, T t) { cout << t << endl; }
+
+template <typename T, typename... ArgTypes>
+void print(char sep, T t, ArgTypes... args) {
+  cout << t << sep;
+  print(sep, args...);
+}
+} // namespace UserPrint

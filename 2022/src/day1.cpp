@@ -1,9 +1,10 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <numeric>
 #include <string>
 #include <vector>
+
+#include "utils/algo.hpp"
 
 using namespace std;
 
@@ -34,10 +35,8 @@ int main() {
   cout << "total elves: " << elfIdx << endl;
 
   // find result
-  sort(calories.begin(), calories.end(), greater<int>());
+  vec::sortVec(calories, greater<int>());
   cout << "max calories: " << calories[0] << endl;
   cout << "top three calories total: "
-       << accumulate(calories.begin(), calories.begin() + 3,
-                     decltype(calories)::value_type(0))
-       << endl;
+       << vec::accu(calories, 0, std::plus<int>()) << endl;
 }

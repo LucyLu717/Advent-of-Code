@@ -38,7 +38,7 @@ template <typename Func> int solution(const lines_t &lines, Func &&func) {
     if (line.substr(0, NOOP.size()) == NOOP) {
       func(++cycle, registerVal, res);
     } else if (line.substr(0, ADDX.size()) == ADDX) {
-      auto [_, numS] = str::split(line, " ");
+      auto [_, numS] = str::split(line, ' ');
       auto num = stol(numS);
       for (int i = 0; i < ADD_CYCLES; ++i) {
         func(++cycle, registerVal, res);
