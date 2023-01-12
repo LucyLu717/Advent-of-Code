@@ -1,6 +1,5 @@
 #include "utils/algo.hpp"
 #include "utils/input.hpp"
-#include <set>
 
 using namespace std;
 using point_t = direction::coord_t;

@@ -38,6 +38,15 @@ inline set<char> convertStrToSet(const string &str) {
   return res;
 }
 
+// convert a string into a vector of chars
+inline vector<char> strToVec(const string &str) {
+  vector<char> res;
+  for (const char &c : str) {
+    res.push_back(c);
+  }
+  return res;
+}
+
 // split a string around the first occurrence of a given character
 inline pair<string, string> split(const string &str, char sep) {
   auto pos = str.find(sep);
@@ -136,6 +145,16 @@ void iterateMatrix(const vector<vector<ElmT>> &matrix, Func1 &&perElmFunc,
   }
 }
 
+template <typename ElmT, typename Func1>
+void iterateMatrixByIdx(const vector<vector<ElmT>> &matrix,
+                        Func1 &&perElmFunc) {
+  for (int r = 0; r < matrix.size(); ++r) {
+    for (int c = 0; c < matrix[r].size(); ++c) {
+      perElmFunc(matrix, r, c);
+    }
+  }
+}
+
 template <typename ElmT> void printMatrix(const vector<vector<ElmT>> &matrix) {
   auto print = [](ElmT val) { cout << val << ' '; };
   auto printNewLine = [](vector<ElmT> _) { cout << '\n'; };
@@ -166,6 +185,23 @@ template <Direction d> void move_point(coord_t &point, int step) {
   } else if constexpr (d == Direction::eRight) {
     point.first += step;
   }
+}
+
+// Move point in Direction [d] by [step]
+// [point] represents a pair of coordinates, i.e. (x, y)
+template <Direction d>
+[[nodiscard]] coord_t move_point(const coord_t &point, int step) {
+  coord_t res = point;
+  if constexpr (d == Direction::eUp) {
+    res.second += step;
+  } else if constexpr (d == Direction::eDown) {
+    res.second -= step;
+  } else if constexpr (d == Direction::eLeft) {
+    res.first -= step;
+  } else if constexpr (d == Direction::eRight) {
+    res.first += step;
+  }
+  return res;
 }
 
 } // namespace direction
