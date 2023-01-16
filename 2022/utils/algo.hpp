@@ -204,6 +204,35 @@ template <Direction d>
   return res;
 }
 
+inline vector<coord_t> get_points_between(const coord_t &start,
+                                          const coord_t &end) {
+  vector<coord_t> res;
+  if (start.first == end.first) {
+    auto distance = end.second - start.second;
+    if (distance > 1) {
+      while (--distance > 0) {
+        res.emplace_back(start.first, start.second + distance);
+      }
+    } else if (distance < -1) {
+      while (++distance < 0) {
+        res.emplace_back(start.first, start.second + distance);
+      }
+    }
+  } else if (start.second == end.second) {
+    auto distance = end.first - start.first;
+    if (distance > 1) {
+      while (--distance > 0) {
+        res.emplace_back(start.first + distance, start.second);
+      }
+    } else if (distance < -1) {
+      while (++distance < 0) {
+        res.emplace_back(start.first + distance, start.second);
+      }
+    }
+  }
+  return res;
+}
+
 } // namespace direction
 
 namespace UserPrint {
