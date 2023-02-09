@@ -65,6 +65,7 @@ inline pair<string, string> split(const string &str, const string &sep) {
   return make_pair(str.substr(0, pos), str.substr(pos + sep.size()));
 }
 
+// split a string around all occurrence of a given string pattern
 inline vector<string> splitAll(const string &str, const string &sep) {
   vector<string> res;
   size_t startPos = 0;
@@ -204,6 +205,8 @@ template <Direction d>
   return res;
 }
 
+// Return a vector of points between two points
+// The two points need to have the same x or y coordinate
 inline vector<coord_t> get_points_between(const coord_t &start,
                                           const coord_t &end) {
   vector<coord_t> res;
@@ -231,6 +234,11 @@ inline vector<coord_t> get_points_between(const coord_t &start,
     }
   }
   return res;
+}
+
+// Return the manhattan distance between two points
+inline int getManhattanDistBetween(coord_t p1, coord_t p2) {
+  return abs(p1.first - p2.first) + abs(p1.second - p2.second);
 }
 
 } // namespace direction

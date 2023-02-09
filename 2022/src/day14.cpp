@@ -77,13 +77,14 @@ bool sandFall(const set<point_t> &rocks, set<point_t> &sands, Func &&check,
     auto newPos = proceed(pos);
     if (newPos == pos) {
       // can't proceed, rest here
-      sands.insert(newPos);
       finalPos = newPos;
+      sands.insert(finalPos);
       return false;
     }
     pos = newPos;
   }
   finalPos = pos;
+  sands.insert(finalPos);
   return true;
 }
 
@@ -113,15 +114,12 @@ int part2(const set<point_t> &rocks) {
     }
     return false;
   };
-  point_t pos;
-  while (true) {
+  point_t pos = {-1, -1};
+  while (pos != SAND_START) {
     sandFall(rocks, sands, onTheGround, pos);
-    sands.insert(pos);
     ++count;
-    if (pos == SAND_START) {
-      return count;
-    }
   }
+  return count;
 }
 
 int main() {
